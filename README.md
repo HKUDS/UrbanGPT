@@ -2,7 +2,7 @@
 
 A pytorch implementation for the paper: [UrbanGPT: Spatio-Temporal Large Language Models]<br />  
 
-Zhonghang Li, Lianghao Xia, Jiabin Tang, Yong Xu, Lei Shi, Long Xia, Dawei Yin, Chao Huang* (*Correspondence)<br />  
+[Zhonghang Li](https://scholar.google.com/citations?user=__9uvQkAAAAJ), [Lianghao Xia](https://akaxlh.github.io/), [Jiabin Tang](https://tjb-tech.github.io/), [Yong Xu](https://scholar.google.com/citations?user=1hx5iwEAAAAJ), [Lei Shi](https://harryshil.github.io/), [Long Xia](https://scholar.google.com/citations?user=NRwerBAAAAAJ), [Dawei Yin](https://www.yindawei.com/), [Chao Huang](https://sites.google.com/view/chaoh)* (*Correspondence)<br />  
 
 **[Data Intelligence Lab](https://sites.google.com/view/chaoh/home)@[University of Hong Kong](https://www.hku.hk/)**, [South China University of Technology](https://www.scut.edu.cn/en/), Baidu Inc  
 
@@ -18,6 +18,13 @@ This repository hosts the code, data, and model weights of **UrbanGPT**.
 
 -----
 ## 🎉 News 
+🎯🎯📢📢 We upload the **models** and **data** used in our UrbanGPT on 🤗 **Huggingface**. We highly recommend referring to the table below for further details: 
+
+| 🤗 Huggingface Address                                        | 🎯 Description                                                |
+| ------------------------------------------------------------ | ------------------------------------------------------------ |
+| [https://huggingface.co/datasets/bjdwh/checkpoints](https://huggingface.co/datasets/bjdwh/checkpoints) | It's the checkpoint of our UrbanGPT based on Vicuna-7B-v1.5-16k tuned on instruction data [train-data](https://huggingface.co/datasets/bjdwh/ST_data_urbangpt/tree/main/train_data) |
+| [https://huggingface.co/datasets/bjdwh/ST_data_urbangpt](https://huggingface.co/datasets/bjdwh/ST_data_urbangpt/tree/main/NYC_taxi_cross-region) | We release a portion of the dataset for evaluation. |
+
 - [x] [2023.02.23] 🚀🚀 Release the code of UrbanGPT.
 
 ## 👉 TODO 
