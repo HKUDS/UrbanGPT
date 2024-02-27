@@ -50,7 +50,7 @@ Extensive experimental findings highlight the potential of building LLMs for spa
 
 
 ### Demo Video
-[![Watch the video](https://github.com/urban-gpt/urban-gpt.github.io/blob/main/static/images/vedio.png)](https://www.youtube.com/embed/DXonSlOwvUc)
+https://github.com/HKUDS/UrbanGPT/assets/90381931/9cd094b4-8fa3-486f-890d-631a08b19b4a
 
 -----------
 <span id='Usage'/>
