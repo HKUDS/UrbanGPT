@@ -48,6 +48,10 @@ Extensive experimental findings highlight the potential of building LLMs for spa
 
 ![The detailed framework of the proposed UrbanGPT.](https://github.com/urban-gpt/urban-gpt.github.io/blob/main/images/urbangpt_framework.png)
 
+
+### Demo Video
+[![Watch the video](https://github.com/urban-gpt/urban-gpt.github.io/blob/main/static/images/vedio.png)](https://www.youtube.com/embed/DXonSlOwvUc)
+
 -----------
 <span id='Usage'/>
 
@@ -188,7 +192,7 @@ Extensive experimental findings highlight the potential of building LLMs for spa
 
 <span id='Environment'/>
 
-## 2.Environment
+## 2.Environment <a href='#all_catelogue'>[Back to Top]</a>
 Please first clone the repo and install the required environment, which can be done by running the following commands:
 ```shell
 conda create -n urbangpt python=3.9.13
