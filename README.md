@@ -10,9 +10,9 @@ A pytorch implementation for the paper: [UrbanGPT: Spatio-Temporal Large Languag
 
 <a href='https://urban-gpt.github.io/'><img src='https://img.shields.io/badge/Project-Page-Green'></a>
 <a href='https://github.com/HKUDS/UrbanGPT'><img src='https://img.shields.io/badge/Demo-Page-purple'></a> 
-<a href='#'><img src='https://img.shields.io/badge/Paper-PDF-orange'></a> 
-[![YouTube](https://badges.aleen42.com/src/youtube.svg)](#)
- • 🌐 <a href="#" target="_blank">中文博客</a>
+<a href='https://arxiv.org/abs/2403.00813'><img src='https://img.shields.io/badge/Paper-PDF-orange'></a> 
+[![YouTube](https://badges.aleen42.com/src/youtube.svg)](https://www.youtube.com/watch?v=4BIbQt-EIAM)
+ • 🌐 <a href="https://zhuanlan.zhihu.com/p/684785925" target="_blank">中文博客</a>
 
 This repository hosts the code, data, and model weights of **UrbanGPT**.
 
@@ -26,12 +26,13 @@ This repository hosts the code, data, and model weights of **UrbanGPT**.
 | [https://huggingface.co/datasets/bjdwh/ST_data_urbangpt](https://huggingface.co/datasets/bjdwh/ST_data_urbangpt/tree/main/NYC_taxi_cross-region) | We release a portion of the dataset for evaluation. |
 
 - [x] [2023.02.23] 🚀🚀 Release the code of UrbanGPT.
+- [ ] [2023.02.29] Add video.
+- [x] [2023.03.05] Release the full paper.
 
 ## 👉 TODO 
-- [ ] Release the full paper.
-- [ ] Add video.
 - [ ] Release more st dataset.
 - [ ] Release instruction generation codes.
+- [ ] Upload the new checkpoint of our UrbanGPT.
 - [ ] ...
 
 
@@ -192,7 +193,7 @@ https://github.com/HKUDS/UrbanGPT/assets/90381931/9cd094b4-8fa3-486f-890d-631a08
 
 <span id='Environment'/>
 
-## 2.Environment <a href='#all_catelogue'>[Back to Top]</a>
+### 2.Environment <a href='#all_catelogue'>[Back to Top]</a>
 Please first clone the repo and install the required environment, which can be done by running the following commands:
 ```shell
 conda create -n urbangpt python=3.9.13
@@ -218,8 +219,9 @@ cd UrbanGPT
 pip install deepspeed
 pip install ray
 pip install einops
+pip install wandb
 # （There is a version compatibility issue between "flash-attn" and "transformers". Please refer to the flash-attn [GitHub URL](https://github.com/Dao-AILab/flash-attention) for more information.）
-pip install flash-attn==2.3.5
+pip install flash-attn==2.3.5  # or download from (https://github.com/Dao-AILab/flash-attention/releases, e.g. flash_attn-2.3.5+cu117torch2.0cxx11abiFALSE-cp39-cp39-linux_x86_64.whl)
 pip install transformers==4.34.0
 
 # （or you can install according to the requirements file.）
@@ -237,7 +239,7 @@ UrabnGPT is trained based on following excellent existing models.
 Please follow the instructions to prepare the checkpoints.
 
 - `Vicuna`:
-  Prepare our base model Vicuna, which is an instruction-tuned chatbot and base model in our implementation. Please download its weights [here](https://github.com/lm-sys/FastChat#model-weights). We generally utilize v1.5 and v1.5-16k model with 7B parameters.
+  Prepare our base model Vicuna, which is an instruction-tuned chatbot and base model in our implementation. Please download its weights [here](https://github.com/lm-sys/FastChat#model-weights). We generally utilize v1.5 and v1.5-16k model with 7B parameters. You should update the 'config.json' of vicuna, for example, the 'config.json' in v1.5-16k can be found in [config.json](https://huggingface.co/datasets/bjdwh/checkpoints/blob/main/train_config/config.json)
 
 - `Spatio-temporal Encoder`:
   We employ a simple TCNs-based spatio-temporal encoder to encode the spatio-temporal dependencies. The weights of [st_encoder](./checkpoints/st_encoder/pretrain_stencoder.pth) are pre-trained through a typical multi-step spatio-temporal prediction task.
@@ -326,25 +328,26 @@ python ./urbangpt/eval/run_urbangpt.py --model-name ${output_model}  --prompting
 
 <!--
 ## Contact
-
 For any questions or feedback, feel free to contact [Zhonghang Li](mailto:bjdwh.zzh@gmail.com).
-
+-->
 
 ## Citation
 
-If you find GraphGPT useful in your research or applications, please kindly cite:
-```tex
-@articles{li2023urbangptgpt,
-title={UrbanGPT: Spatio-Temporal Large Language Models}, 
-author={},
-year={2023},
-eprint={},
-archivePrefix={arXiv},
-primaryClass={cs.CL}
+If you find UrbanGPT useful in your research or applications, please kindly cite:
+
+```
+@misc{li2024urbangpt,
+      title={UrbanGPT: Spatio-Temporal Large Language Models}, 
+      author={Zhonghang Li and Lianghao Xia and Jiabin Tang and Yong Xu and Lei Shi and Long Xia and Dawei Yin and Chao Huang},
+      year={2024},
+      eprint={2403.00813},
+      archivePrefix={arXiv},
+      primaryClass={cs.CL}
 }
 ```
--->
+
+
 
 ## Acknowledgements
 You may refer to related work that serves as foundations for our framework and code repository, 
-[Vicuna](https://github.com/lm-sys/FastChat). We also partially draw inspirations from [GraphGPT](https://github.com/HKUDS/GraphGPT). The design of our website and README.md was inspired by [NExT-GPT](https://next-gpt.github.io/). Thanks for their wonderful works.
+[Vicuna](https://github.com/lm-sys/FastChat). We also partially draw inspirations from [GraphGPT](https://github.com/HKUDS/GraphGPT). The design of our website and README.md was inspired by [NExT-GPT](https://next-gpt.github.io/), and the design of our system deployment was inspired by [gradio](https://www.gradio.app) and [Baize](https://huggingface.co/spaces/project-baize/chat-with-baize). Thanks for their wonderful works.
