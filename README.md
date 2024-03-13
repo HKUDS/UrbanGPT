@@ -22,17 +22,18 @@ This repository hosts the code, data, and model weights of **UrbanGPT**.
 
 | 🤗 Huggingface Address                                        | 🎯 Description                                                |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| [https://huggingface.co/datasets/bjdwh/checkpoints](https://huggingface.co/datasets/bjdwh/checkpoints) | It's the checkpoint of our UrbanGPT based on Vicuna-7B-v1.5-16k tuned on instruction data [train-data](https://huggingface.co/datasets/bjdwh/ST_data_urbangpt/tree/main/train_data) |
-| [https://huggingface.co/datasets/bjdwh/ST_data_urbangpt](https://huggingface.co/datasets/bjdwh/ST_data_urbangpt/tree/main/NYC_taxi_cross-region) | We release a portion of the dataset for evaluation. |
+| [https://huggingface.co/bjdwh/UrbanGPT](https://huggingface.co/bjdwh/UrbanGPT/tree/main) | It's the checkpoint of our UrbanGPT based on Vicuna-7B-v1.5-16k tuned on instruction data [train-data](https://huggingface.co/datasets/bjdwh/ST_data_urbangpt/tree/main/train_data) |
+| [https://huggingface.co/datasets/bjdwh/ST_data_urbangpt](https://huggingface.co/datasets/bjdwh/ST_data_urbangpt) | We release a portion of the dataset for evaluation. |
 
 - [x] [2023.02.23] 🚀🚀 Release the code of UrbanGPT.
-- [ ] [2023.02.29] Add video.
+- [x] [2023.02.29] Add video.
 - [x] [2023.03.05] Release the full paper.
+- [x] [2023.03.11] Upload the new checkpoint of our UrbanGPT.
 
 ## 👉 TODO 
 - [ ] Release more st dataset.
 - [ ] Release instruction generation codes.
-- [ ] Upload the new checkpoint of our UrbanGPT.
+- [ ] Release baselines codes.
 - [ ] ...
 
 
