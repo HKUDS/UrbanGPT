@@ -18,9 +18,9 @@ This repository hosts the code, data, and model weights of **UrbanGPT**.
 
 -----
 ## 🎉 News 
-🎯🎯📢📢 We upload the **models** and **data** used in our UrbanGPT on 🤗 **Huggingface**. We highly recommend referring to the table below for further details: 
+🎯🎯📢📢 We upload the **models** and **data** used in our UrbanGPT on 🤗 **Hugging Face**. We highly recommend referring to the table below for further details: 
 
-| 🤗 Huggingface Address                                        | 🎯 Description                                                |
+| 🤗 Hugging Face Address                                       | 🎯 Description                                                |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | [https://huggingface.co/bjdwh/UrbanGPT](https://huggingface.co/bjdwh/UrbanGPT/tree/main) | It's the checkpoint of our UrbanGPT based on Vicuna-7B-v1.5-16k tuned on instruction data [train-data](https://huggingface.co/datasets/bjdwh/ST_data_urbangpt/tree/main/train_data) |
 | [https://huggingface.co/datasets/bjdwh/ST_data_urbangpt](https://huggingface.co/datasets/bjdwh/ST_data_urbangpt) | We release a portion of the dataset for evaluation. |
