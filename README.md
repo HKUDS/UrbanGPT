@@ -19,7 +19,7 @@ This repository hosts the code, data, and model weights of **UrbanGPT**.
 -----
 ## 🎉 News 
 
-- [x] 🚀🔥 [2024.05] 🎯🎯📢📢 Exciting News! We are thrilled to announce that our 🌟UrbanGPT🌟 has been accepted by KDD'2024! 🎉🎉🎉
+- [x] 🚀🔥 [2024.05] 🎯🎯📢📢 Exciting News! We are thrilled to announce that our 🌟UrbanGPT🌟 has been accepted by KDD'2024! 🎉🎉🎉 Thanks to all the team members 🤗
 
 🎯🎯📢📢 We upload the **models** and **data** used in our UrbanGPT on 🤗 **Huggingface**. We highly recommend referring to the table below for further details: 
 
