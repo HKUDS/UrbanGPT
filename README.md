@@ -1,5 +1,7 @@
 # UrbanGPT: Spatio-Temporal Large Language Models
 
+<img src='urbanGPTarticle cover.jpeg' />
+
 A pytorch implementation for the paper: [UrbanGPT: Spatio-Temporal Large Language Models]<br />  
 
 [Zhonghang Li](https://scholar.google.com/citations?user=__9uvQkAAAAJ), [Lianghao Xia](https://akaxlh.github.io/), [Jiabin Tang](https://tjb-tech.github.io/), [Yong Xu](https://scholar.google.com/citations?user=1hx5iwEAAAAJ), [Lei Shi](https://harryshil.github.io/), [Long Xia](https://scholar.google.com/citations?user=NRwerBAAAAAJ), [Dawei Yin](https://www.yindawei.com/), [Chao Huang](https://sites.google.com/view/chaoh)* (*Correspondence)<br />  
