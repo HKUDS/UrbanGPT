@@ -331,7 +331,6 @@ num_gpus=8
 
 python ./urbangpt/eval/run_urbangpt.py --model-name ${output_model}  --prompting_file ${datapath} --st_data_path ${st_data_path} --output_res_path ${res_path} --start_id ${start_id} --end_id ${end_id} --num_gpus ${num_gpus}
 ```
----------
 
 <!--
 ## Contact
@@ -357,6 +356,8 @@ python instruction_generate.py -dataset_name NYC_multi
 # Create instruction data for the NYC_taxi dataset to facilitate testing in the zero-shot setting of UrbanGPT
 python instruction_generate.py -dataset_name NYC_taxi -for_zeroshot True
 ```
+
+---------
 
 ## Citation
 
