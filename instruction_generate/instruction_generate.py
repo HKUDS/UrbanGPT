@@ -11,9 +11,9 @@ import re
 # =============================== Setting =============================== #
 args = argparse.ArgumentParser(prefix_chars='--', description='test')
 # NYC_multi(for train)     NYC_taxi NYC_bike NYC_crime1 NYC_crime2 CHI_taxi (for test)
-args.add_argument('-dataset_name', default='NYC_crime2', type=str)
+args.add_argument('-dataset_name', default='NYC_multi', type=str)
 # Only one option can be set to True
-args.add_argument('-for_zeroshot', default=True, type=eval, help='for zero-shot prediction or not')
+args.add_argument('-for_zeroshot', default=False, type=eval, help='for zero-shot prediction or not')
 args.add_argument('-for_supervised', default=False, type=eval, help='for supervised prediction or not')
 args.add_argument('-for_ablation', default=False, type=eval, help='for ablation study or not')
 
