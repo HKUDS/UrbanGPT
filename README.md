@@ -28,16 +28,16 @@ This repository hosts the code, data, and model weights of **UrbanGPT**.
 | 🤗 Huggingface Address                                        | 🎯 Description                                                |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | [https://huggingface.co/bjdwh/UrbanGPT](https://huggingface.co/bjdwh/UrbanGPT/tree/main) | It's the checkpoint of our UrbanGPT based on Vicuna-7B-v1.5-16k tuned on instruction data [train-data](https://huggingface.co/datasets/bjdwh/ST_data_urbangpt/tree/main/train_data) |
-| [https://huggingface.co/datasets/bjdwh/ST_data_urbangpt](https://huggingface.co/datasets/bjdwh/ST_data_urbangpt) | We release a portion of the dataset for evaluation. |
+| [https://huggingface.co/datasets/bjdwh/ST_data_urbangpt](https://huggingface.co/datasets/bjdwh/ST_data_urbangpt) | We released a portion of the instruction dataset for evaluation. |
+| [https://huggingface.co/datasets/bjdwh/UrbanGPT_ori_stdata](https://huggingface.co/datasets/bjdwh/UrbanGPT_ori_stdata) | We released the original dataset used in UrbanGPT. |
 
 - [x] [2023.02.23] 🚀🚀 Release the code of UrbanGPT.
 - [x] [2023.02.29] Add video.
 - [x] [2023.03.05] Release the full paper.
 - [x] [2023.03.11] Upload the new checkpoint of our UrbanGPT.
+- [x] [2023.06.07] Release instruction generation codes and the original dataset used in UrbanGPT.
 
 ## 👉 TODO 
-- [ ] Release more st dataset.
-- [ ] Release instruction generation codes.
 - [ ] Release baselines codes.
 - [ ] ...
 
@@ -75,6 +75,7 @@ https://github.com/HKUDS/UrbanGPT/assets/90381931/9cd094b4-8fa3-486f-890d-631a08
 * <a href='#Evaluating UrbanGPT'>4. Evaluating UrbanGPT</a>
   * <a href='#Preparing Checkpoints and Data'>4.1. Preparing Checkpoints and Data</a>
   * <a href='#Running Evaluation'>4.2. Running Evaluation</a>
+* <a href='#Instructions Generation'>5. Instructions Generation </a>
 
 ****
 
@@ -336,6 +337,26 @@ python ./urbangpt/eval/run_urbangpt.py --model-name ${output_model}  --prompting
 ## Contact
 For any questions or feedback, feel free to contact [Zhonghang Li](mailto:bjdwh.zzh@gmail.com).
 -->
+
+## 5. Instructions Generation <a href='#all_catelogue'>[Back to Top]</a>
+
+<span id='Instructions Generation'/>
+
+You can use the code in [instruction_generate.py](./instruction_generate/instruction_generate.py) to generate the specific instructions you need. For example: 
+
+```
+-dataset_name: Choose the dataset. # NYC_multi(for training)    NYC_taxi NYC_bike NYC_crime1 NYC_crime2 CHI_taxi (for testing)
+# Only one of the following options can be set to True
+-for_zeroshot: for zero-shot prediction or not.
+-for_supervised: for supervised prediction or not.
+-for_ablation: for ablation study or not.
+
+# Create the instruction data for traning
+python instruction_generate.py -dataset_name NYC_multi
+
+# Create instruction data for the NYC_taxi dataset to facilitate testing in the zero-shot setting of UrbanGPT
+python instruction_generate.py -dataset_name NYC_taxi -for_zeroshot True
+```
 
 ## Citation
 
