@@ -75,8 +75,8 @@ https://github.com/HKUDS/UrbanGPT/assets/90381931/9cd094b4-8fa3-486f-890d-631a08
 * <a href='#Evaluating UrbanGPT'>4. Evaluating UrbanGPT</a>
   * <a href='#Preparing Checkpoints and Data'>4.1. Preparing Checkpoints and Data</a>
   * <a href='#Running Evaluation'>4.2. Running Evaluation</a>
+  * <a href='#Evaluation Metric Calculation'>4.3. Evaluation Metric Calculation</a>
 * <a href='#Instructions Generation'>5. Instructions Generation </a>
-
 ****
 
 
@@ -332,10 +332,14 @@ num_gpus=8
 python ./urbangpt/eval/run_urbangpt.py --model-name ${output_model}  --prompting_file ${datapath} --st_data_path ${st_data_path} --output_res_path ${res_path} --start_id ${start_id} --end_id ${end_id} --num_gpus ${num_gpus}
 ```
 
-<!--
-## Contact
-For any questions or feedback, feel free to contact [Zhonghang Li](mailto:bjdwh.zzh@gmail.com).
--->
+#### 4.3. Evaluation Metric Calculation <a href='#all_catelogue'>[Back to Top]</a>
+
+<span id='Evaluation Metric Calculation'/>
+
+You can use [result_test.py](./metric_calculation/result_test.py) to calculate the performance metrics of the predicted results. 
+
+---------
+
 
 ## 5. Instructions Generation <a href='#all_catelogue'>[Back to Top]</a>
 
@@ -358,6 +362,11 @@ python instruction_generate.py -dataset_name NYC_taxi -for_zeroshot True
 ```
 
 ---------
+
+<!--
+## Contact
+For any questions or feedback, feel free to contact [Zhonghang Li](mailto:bjdwh.zzh@gmail.com).
+-->
 
 ## Citation
 
