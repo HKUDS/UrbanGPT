@@ -2,36 +2,6 @@ import os
 import numpy as np
 import pandas as pd
 
-
-def getstd(data_in):
-    data = data_in
-    print(data.shape)
-    day = data.shape[1]
-    region_num = data.shape[0]
-    # mask = 1 * (data > 0)
-    p1 = np.zeros([region_num, data.shape[-1]])
-    for cate in range(data.shape[-1]):
-        for region in range(region_num):
-            p1[region, cate] = np.std(data[region, :, cate])
-    mask1 = np.zeros_like(p1)
-    mask2 = np.zeros_like(p1)
-    mask3 = np.zeros_like(p1)
-    mask4 = np.zeros_like(p1)
-    for cate1 in range(data_in.shape[-1]):
-        p_sorted = np.sort(p1)
-        percentiles = np.percentile(p_sorted, [25, 50, 75])
-        max_cate_i, min_cate_i = max(p1[..., cate1]), min(p1[..., cate1])
-        for region1 in range(region_num):
-            if p1[region1, cate1] >= min_cate_i and p1[region1, cate1] <= percentiles[0]:
-                mask1[region1, cate1] = 1
-            elif p1[region1, cate1] > percentiles[0] and p1[region1, cate1] <= percentiles[1]:
-                mask2[region1, cate1] = 1
-            elif p1[region1, cate1] > percentiles[1] and p1[region1, cate1] <= percentiles[2]:
-                mask3[region1, cate1] = 1
-            elif p1[region1, cate1] > percentiles[2] and p1[region1, cate1] <= max_cate_i:
-                mask4[region1, cate1] = 1
-    return mask1, mask2, mask3, mask4
-
 def time_add(data, dataset_name, week_start, month_day_start, month_start, interval=5, weekday_only=False, year_list=None, holiday_list=None, month_list_spe=None, day_start=0, hour_of_day=24):
     # day and week
     if weekday_only:
@@ -155,8 +125,10 @@ def time_add(data, dataset_name, week_start, month_day_start, month_start, inter
         type_data = type_data + 3
     elif dataset_name == 'NYCcrime2':
         type_data = type_data + 4
-    elif dataset_name == 'CHI_taxi':
+    elif dataset_name == 'CHItaxi':
         type_data = type_data + 5
+    elif dataset_name == 'CHI_crime':
+        type_data = type_data + 6
     else:
         raise ValueError
 
@@ -165,7 +137,7 @@ def time_add(data, dataset_name, week_start, month_day_start, month_start, inter
 
 def load_st_dataset(dataset, args):
     # Data recorded: 2016.01.01---2021.12.31
-    if dataset == 'NYC_multi':
+    if dataset == 'NYCmulti':
         # NYC_TAXI for training
         data_taxi_path = os.path.join('st_data/all_nyc_taxi_263x105216x2.npz')
         data_taxi = np.load(data_taxi_path)['data']
@@ -224,7 +196,7 @@ def load_st_dataset(dataset, args):
         data = np.concatenate([data_taxi, data_bike, data_crime1, data_crime2], axis=1)
         print('NYC_multi data shape:', data.shape, data_taxi.shape, data_bike.shape, data_crime1.shape, data_crime2.shape)
 
-    elif dataset == 'NYC_taxi':
+    elif dataset == 'NYCtaxi':
         data_taxi_path = os.path.join('st_data/all_nyc_taxi_263x105216x2.npz')
         data_taxi = np.load(data_taxi_path)['data']
         month_start = 1
@@ -261,7 +233,7 @@ def load_st_dataset(dataset, args):
         # np.savez('NYC_taxi_mask4', data=mask4)
         data = data_taxi
 
-    elif dataset == 'NYC_bike':
+    elif dataset == 'NYCbike':
         data_path = os.path.join('st_data/all_nyc_bike_46x47x105216x2.npz')
         data_bike = np.load(data_path)['data']  # only traffic speed data
         print(data_bike.shape, data_bike[data_bike==0].shape)
@@ -295,7 +267,7 @@ def load_st_dataset(dataset, args):
             raise ValueError
         data = data_bike
 
-    elif dataset == 'NYC_crime1':
+    elif dataset == 'NYCcrime1':
         data_path = os.path.join('st_data/crime_nyc_2016_1_2021_12_46x47.npz')
         data_crime1 = np.load(data_path)['data']  # DROP & PICK
         print(data_crime1.shape, data_crime1[data_crime1==0].shape)
@@ -328,7 +300,7 @@ def load_st_dataset(dataset, args):
 
         data = data_crime1
 
-    elif dataset == 'NYC_crime2':
+    elif dataset == 'NYCcrime2':
         data_path = os.path.join('st_data/crime_nyc_2016_1_2021_12_46x47.npz')
         data_crime1 = np.load(data_path)['data']
         print(data_crime1.shape, data_crime1[data_crime1==0].shape)
@@ -361,7 +333,7 @@ def load_st_dataset(dataset, args):
 
         data = data_crime2
 
-    elif dataset == 'CHI_taxi':
+    elif dataset == 'CHItaxi':
         data_taxi_path = os.path.join('./st_data/2021-CHI_taxi_77x17520x2.npz')
         data_taxi = np.load(data_taxi_path)['data']  # only the first dimension, traffic flow data
         print(data_taxi.shape, data_taxi[data_taxi==0].shape, max(data_taxi.reshape(-1)))
@@ -379,7 +351,7 @@ def load_st_dataset(dataset, args):
         args.month=month
 
         day_data, week_data, month_day_data, month_data, year_data, type_data = time_add(
-            data_taxi, 'CHI_taxi', week_start, month_day_start, month_start, interval=interval, weekday_only=False, year_list = year_list,
+            data_taxi, 'CHItaxi', week_start, month_day_start, month_start, interval=interval, weekday_only=False, year_list = year_list,
             holiday_list=holiday_list)
         data_taxi = np.concatenate([data_taxi, day_data, week_data, month_day_data, month_data, year_data, type_data], axis=-1)
 
@@ -396,6 +368,125 @@ def load_st_dataset(dataset, args):
         # np.savez('CHI_taxi_mask3', data=mask3)
         # np.savez('CHI_taxi_mask4', data=mask4)
         data = data_taxi
+    elif dataset == 'CA_D5':
+        data_tflow_path = os.path.join('./st_data/CA_D5.npz')
+        data_tflow = np.load(data_tflow_path)['data']  # only the first dimension, traffic flow data
+        print(data_tflow.shape)
+        data_tflow = data_tflow.transpose(1, 0)
+        data_tflow = np.expand_dims(data_tflow, axis=-1)
+        data_tflow = np.concatenate([data_tflow, data_tflow], axis=-1)
+        print(data_tflow.shape)
+        # print(sss)
+        month_start = 1
+        week_start = 7
+        month_day_start = 1
+        holiday_list = None
+        interval = 5
+        week_day = 7
+        month = 12
+        year_list = [2017]
+        args.interval = interval
+        args.week_day = week_day
+        args.month = month
+
+        day_data, week_data, month_day_data, month_data, year_data, type_data = time_add(
+            data_tflow, 'CA_D5', week_start, month_day_start, month_start, interval=interval, weekday_only=False,
+            year_list=year_list,
+            holiday_list=holiday_list)
+        data_tflow = np.concatenate([data_tflow, day_data, week_data, month_day_data, month_data, year_data, type_data],
+                                   axis=-1)
+        data_tflow = data_tflow[:80, (0) * ((24 * 60) // interval):(7) * ((24 * 60) // interval), :]
+        data = data_tflow
+    elif dataset == 'PEMS07M':
+        data_tspeed_path = os.path.join('./st_data/PeMS07M.csv')
+        df_speed = pd.read_csv(data_tspeed_path, encoding='utf-8', header=None)
+        data_tspeed = df_speed.values
+        print(data_tspeed.shape)
+        data_tspeed = data_tspeed.transpose(1, 0)
+        data_tspeed = np.expand_dims(data_tspeed, axis=-1)
+        data_tspeed = np.concatenate([data_tspeed, data_tspeed], axis=-1)
+        print(data_tspeed.shape)
+        # print(sss)
+        month_start = 5
+        week_start = 2
+        month_day_start = 1
+        holiday_list = None
+        interval = 5
+        week_day = 7
+        month = 12
+        year_list = [2012]
+        month_list_spe = [23, 21]
+        args.interval = interval
+        args.week_day = week_day
+        args.month = month
+
+        day_data, week_data, month_day_data, month_data, year_data, type_data = time_add(
+            data_tspeed, 'PEMS07M', week_start, month_day_start, month_start, interval=interval, weekday_only=True,
+            year_list=year_list,
+            holiday_list=holiday_list, month_list_spe=month_list_spe)
+        data_tspeed = np.concatenate([data_tspeed, day_data, week_data, month_day_data, month_data, year_data, type_data],
+                                    axis=-1)
+        data_tspeed = data_tspeed[:80, (0) * ((24 * 60) // interval):(4) * ((24 * 60) // interval), :]
+        data = data_tspeed
+    elif dataset == 'CA_D11':
+        data_tflow_path = os.path.join('./st_data/CA_D11.npz')
+        data_tflow = np.load(data_tflow_path)['data']  # only the first dimension, traffic flow data
+        print(data_tflow.shape)
+        data_tflow = data_tflow.transpose(1, 0)
+        data_tflow = np.expand_dims(data_tflow, axis=-1)
+        data_tflow = np.concatenate([data_tflow, data_tflow], axis=-1)
+        print(data_tflow.shape)
+        # print(sss)
+        month_start = 11
+        week_start = 3
+        month_day_start = 1
+        holiday_list = None
+        interval = 5
+        week_day = 7
+        month = 12
+        year_list = [2017]
+        args.interval = interval
+        args.week_day = week_day
+        args.month = month
+
+        day_data, week_data, month_day_data, month_data, year_data, type_data = time_add(
+            data_tflow, 'CA_D11', week_start, month_day_start, month_start, interval=interval, weekday_only=False,
+            year_list=year_list,
+            holiday_list=holiday_list)
+        data_tflow = np.concatenate([data_tflow, day_data, week_data, month_day_data, month_data, year_data, type_data],
+                                   axis=-1)
+        data_tflow = data_tflow[:30, (0) * ((24 * 60) // interval):(7) * ((24 * 60) // interval), :]
+        data = data_tflow
+    elif dataset == 'METR_LA':
+        data_tspeed_path = os.path.join('./st_data/METR_LA.npz')
+        data_tspeed = np.load(data_tspeed_path)['data']  # only the first dimension, traffic flow data
+        print(data_tspeed.shape)
+        data_tspeed = data_tspeed.transpose(1, 0)
+        data_tspeed = np.expand_dims(data_tspeed, axis=-1)
+        data_tspeed = np.concatenate([data_tspeed, data_tspeed], axis=-1)
+        print(data_tspeed.shape)
+        # print(sss)
+        month_start = 3
+        week_start = 4
+        month_day_start = 1
+        holiday_list = None
+        interval = 5
+        week_day = 7
+        month = 12
+        year_list = [2012]
+        args.interval = interval
+        args.week_day = week_day
+        args.month = month
+
+        day_data, week_data, month_day_data, month_data, year_data, type_data = time_add(
+            data_tspeed, 'METR_LA', week_start, month_day_start, month_start, interval=interval, weekday_only=False,
+            year_list=year_list,
+            holiday_list=holiday_list)
+        data_tflow = np.concatenate([data_tspeed, day_data, week_data, month_day_data, month_data, year_data, type_data],
+                                   axis=-1)
+        data_tflow = data_tflow[:80, (0) * ((24 * 60) // interval):(7) * ((24 * 60) // interval), :]
+        data = data_tflow
+
     else:
         raise ValueError
 
