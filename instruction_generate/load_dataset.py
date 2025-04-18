@@ -220,7 +220,7 @@ def load_st_dataset(dataset, args):
         elif args.for_supervised:
             data_taxi = data_taxi[:80, (-31) * (24 * 60 // 30):, :]
         elif args.for_ablation:
-            data_taxi = data_taxi[:80, (366) * (24 * 60 // 30):(366 + (31 + 28 + 31)) * (24 * 60 // 30), :]
+            data_taxi = data_taxi[80:160, (366) * (24 * 60 // 30):(366 + (31 + 28 + 31)) * (24 * 60 // 30), :]
         else:
             raise ValueError
 
